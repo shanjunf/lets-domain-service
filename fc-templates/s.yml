@@ -1,0 +1,62 @@
+edition: 1.0.0
+name: transform_fun
+access: default
+vars:
+  region: 'cn-beijing'
+services:
+  CustomDomain-aik.abcd.com:
+    component: devsapp/fc-domain
+    props:
+      region: ${vars.region}
+      customDomain:
+        domainName: aik.abcd.com
+        protocol: HTTP,HTTPS
+        certConfig:
+          certName: abcdCert
+          certificate: /root/.acme.sh/abcd.com/fullchain.pem
+          privateKey: /root/.acme.sh/abcd.com/abcd.com.pem
+        routeConfigs:
+          - serviceName: aik
+            functionName: aikback
+            qualifier: prod
+            path: /api/*
+  CustomDomain-gapi.abcd.com:
+    component: devsapp/fc-domain
+    props:
+      region: ${vars.region}
+      customDomain:
+        domainName: gapi.abcd.com
+        protocol: HTTP,HTTPS
+        certConfig:
+          certName: abcdCert
+          certificate: /root/.acme.sh/abcd.com/fullchain.pem
+          privateKey: /root/.acme.sh/abcd.com/abcd.com.pem
+        routeConfigs:
+          - serviceName: aik
+            functionName: aikfront
+            qualifier: LATEST
+            path: /*
+  CustomDomain-gs.abcd.com:
+    component: devsapp/fc-domain
+    props:
+      region: ${vars.region}
+      customDomain:
+        domainName: gs.abcd.com
+        protocol: HTTP,HTTPS
+        certConfig:
+          certName: abcdCert
+          certificate: /root/.acme.sh/abcd.com/fullchain.pem
+          privateKey: /root/.acme.sh/abcd.com/abcd.com.pem
+        routeConfigs:
+          - serviceName: fc-gs-mini-backend
+            functionName: fc-gs-mini-api
+            qualifier: product
+            path: /mini/*
+          - serviceName: fc-gs-mini-backend
+            functionName: fc-gs-mini-api
+            qualifier: product
+            path: /art/*
+          - serviceName: buy-service
+            functionName: app-api
+            qualifier: product
+            path: /buy/*

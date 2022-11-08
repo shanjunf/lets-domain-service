@@ -1,0 +1,16 @@
+.idea
+.svn
+.project
+.vscode
+.DS_Store
+target
+node_modules
+package-lock.json
+yarn-error.log
+npm-debug.log
+package-lock.json
+reports/
+*.iml
+statics/
+.fun
+.s

@@ -1,0 +1,11 @@
+dir=`pwd`
+dirAcme='/root/.acme.sh/'
+
+cd $dirAcme 
+
+cp -f ./abcd.com/fullchain.cer ./abcd.com/fullchain.pem
+cp -f ./abcd.com/abcd.com.key ./abcd.com/abcd.com.pem
+
+cd $dir
+
+s deploy --access default --use-local -t ./fc-templates/s.yml

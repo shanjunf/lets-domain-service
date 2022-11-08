@@ -1,0 +1,23 @@
+export Ali_Key="xxx"
+export Ali_Secret="xxx"
+
+dir=`pwd`
+dirAcme='/root/.acme.sh/'
+
+echo 'dir='$dir 
+echo 'dirAcme'=$dirAcme
+
+cd acme.sh 
+bash acme.sh install
+
+cd $dirAcme 
+
+bash acme.sh --issue --dns dns_ali -d abcd.com -d *.abcd.com --debug
+
+cd $dir 
+
+# apigateway
+# cnpm install
+node apiDomain.js $dirAcme
+
+bash function
