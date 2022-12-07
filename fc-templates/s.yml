@@ -56,7 +56,7 @@ services:
             functionName: fc-gs-mini-api
             qualifier: product
             path: /art/*
-          - serviceName: buy-service
-            functionName: app-api
+          - serviceName: fc-gs-mini-backend
+            functionName: fc-gs-mini-api
             qualifier: product
             path: /buy/*
